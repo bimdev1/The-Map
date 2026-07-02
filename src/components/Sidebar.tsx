@@ -22,6 +22,7 @@ interface SidebarProps {
   onApplyPreset: (presetName: string) => void;
   nodeCount: number;
   arcCount: number;
+  onAddManualNode: (node: MapNode) => void;
 }
 
 export default function Sidebar({
@@ -29,7 +30,8 @@ export default function Sidebar({
   onChangeFilters,
   onApplyPreset,
   nodeCount,
-  arcCount
+  arcCount,
+  onAddManualNode
 }: SidebarProps) {
   const [consoleLogs, setConsoleLogs] = useState<string[]>([
     'INIT SYSTEM BOOT...',
@@ -37,7 +39,8 @@ export default function Sidebar({
     'SCANNING NYC SUB-GRID SECTOR 07...',
     'SECURE CONNECTION STABLISHED VIA PROXY-ALPHA'
   ]);
-  const [activeTab, setActiveTab] = useState<'control' | 'telemetry' | 'system'>('control');
+  const [activeTab, setActiveTab] = useState<'control' | 'telemetry' | 'system' | 'nodes'>('control');
+  const [nodeForm, setNodeForm] = useState({ lat: '', lng: '', name: '', strength: '50' });
 
   // Add random cyber logs over time
   useEffect(() => {
@@ -142,6 +145,16 @@ export default function Sidebar({
           }`}
         >
           CONSOLE
+        </button>
+        <button
+          onClick={() => setActiveTab('nodes')}
+          className={`flex-1 py-2 text-center border-b font-medium uppercase tracking-wider transition-all duration-300 ${
+            activeTab === 'nodes'
+              ? 'text-cyber-pink border-cyber-pink bg-cyber-pink/10'
+              : 'text-slate-500 border-transparent hover:text-slate-300 hover:bg-slate-900/40'
+          }`}
+        >
+          NODES
         </button>
       </div>
 
@@ -563,6 +576,55 @@ export default function Sidebar({
               <div className="mt-2 pt-1.5 border-t border-cyber-yellow/20 flex gap-1 items-center">
                 <span className="w-2 h-3 bg-cyber-yellow animate-ping inline-block" />
                 <span className="text-[8px] text-slate-500 uppercase">SYS STACK RUNNING</span>
+              </div>
+            </motion.div>
+          )}
+          {activeTab === 'nodes' && (
+            <motion.div
+              key="nodes"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.15 }}
+              className="space-y-4"
+            >
+              <div className="space-y-3 border border-cyber-pink/20 p-3 bg-black/30 rounded">
+                <div className="text-[10px] text-cyber-pink font-bold uppercase tracking-wider">
+                  INJECT NEW NODE
+                </div>
+                <input 
+                  type="text" placeholder="NODE NAME" value={nodeForm.name} 
+                  onChange={(e) => setNodeForm(f => ({...f, name: e.target.value}))}
+                  className="w-full bg-black/80 border border-slate-700 focus:border-cyber-pink text-white py-1.5 px-3 rounded text-[10px] uppercase font-mono tracking-wider focus:outline-none placeholder-slate-600 focus:shadow-[0_0_8px_rgba(255,0,85,0.2)]"
+                />
+                <div className="grid grid-cols-2 gap-2">
+                    <input type="number" placeholder="LAT" value={nodeForm.lat} onChange={e => setNodeForm(f => ({...f, lat: e.target.value}))} className="w-full bg-black/80 border border-slate-700 focus:border-cyber-pink text-white py-1.5 px-3 rounded text-[10px] uppercase font-mono tracking-wider focus:outline-none placeholder-slate-600 focus:shadow-[0_0_8px_rgba(255,0,85,0.2)]"/>
+                    <input type="number" placeholder="LNG" value={nodeForm.lng} onChange={e => setNodeForm(f => ({...f, lng: e.target.value}))} className="w-full bg-black/80 border border-slate-700 focus:border-cyber-pink text-white py-1.5 px-3 rounded text-[10px] uppercase font-mono tracking-wider focus:outline-none placeholder-slate-600 focus:shadow-[0_0_8px_rgba(255,0,85,0.2)]"/>
+                </div>
+                <div className="space-y-1">
+                    <div className="text-[9px] text-slate-500 uppercase tracking-widest">SIGNAL STRENGTH</div>
+                    <input type="range" min="0" max="100" value={nodeForm.strength} onChange={e => setNodeForm(f => ({...f, strength: e.target.value}))} className="w-full accent-cyber-pink cursor-pointer"/>
+                </div>
+                <button
+                  onClick={() => {
+                    onAddManualNode({
+                        id: 'manual-' + Date.now(),
+                        coordinates: [parseFloat(nodeForm.lng), parseFloat(nodeForm.lat)],
+                        name: nodeForm.name || 'UNKNOWN_NODE',
+                        value: parseInt(nodeForm.strength),
+                        type: 'terminal',
+                        status: 'active',
+                        traffic: 0,
+                        latency: 0,
+                        pulseOffset: 0,
+                        isManual: true
+                    });
+                    setNodeForm({ lat: '', lng: '', name: '', strength: '50' });
+                  }}
+                  className="w-full py-2 bg-cyber-pink/20 border border-cyber-pink text-cyber-pink hover:bg-cyber-pink/40 hover:text-white transition-all duration-200 font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_15px_rgba(255,0,85,0.4)]"
+                >
+                  &gt; INJECT_NODE
+                </button>
               </div>
             </motion.div>
           )}

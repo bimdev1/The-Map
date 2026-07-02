@@ -35,6 +35,7 @@ export default function App() {
   });
 
   const [data, setData] = useState<{ nodes: MapNode[]; arcs: MapArc[] }>({ nodes: [], arcs: [] });
+  const [manualNodes, setManualNodes] = useState<MapNode[]>([]);
   const [selectedNode, setSelectedNode] = useState<MapNode | null>(null);
   const [isBooting, setIsBooting] = useState(true);
   const [bootProgress, setBootProgress] = useState(0);
@@ -259,6 +260,7 @@ export default function App() {
       <div className="absolute inset-0 w-full h-full z-0">
         <CyberMap 
           nodes={data.nodes}
+          manualNodes={manualNodes}
           arcs={data.arcs}
           filters={filters}
           selectedNode={selectedNode}
@@ -275,6 +277,7 @@ export default function App() {
           onApplyPreset={handleApplyPreset}
           nodeCount={data.nodes.length}
           arcCount={data.arcs.length}
+          onAddManualNode={(node) => setManualNodes(prev => [...prev, node])}
         />
       </div>
 

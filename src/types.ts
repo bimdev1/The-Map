@@ -8,6 +8,7 @@ export interface MapNode {
   traffic: number; // MB/s
   latency: number; // ms
   pulseOffset: number; // animation offset
+  isManual?: boolean;
 }
 
 export interface MapArc {

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import { MapboxOverlay } from '@deck.gl/mapbox';
-import { ArcLayer } from '@deck.gl/layers';
+import { ArcLayer, ScatterplotLayer } from '@deck.gl/layers';
 import { MapNode, MapArc, MapFilters } from '../types';
 
 interface CyberMapProps {
   nodes: MapNode[];
+  manualNodes: MapNode[];
   arcs: MapArc[];
   filters: MapFilters;
   selectedNode: MapNode | null;
@@ -15,6 +16,7 @@ interface CyberMapProps {
 
 export default function CyberMap({
   nodes,
+  manualNodes,
   arcs,
   filters,
   selectedNode,
@@ -212,6 +214,16 @@ export default function CyberMap({
               getWidth: (d: MapArc) => d.width * filters.arcWidth,
               getHeight: 0.65, // Parabolic height scale
               tilt: 12,        // Slightly tilted to show full 3D arc shapes
+            }),
+            new ScatterplotLayer({
+              id: 'manual-nodes',
+              data: manualNodes,
+              getPosition: d => d.coordinates,
+              getFillColor: [255, 0, 85, 255], // Neon magenta/pink
+              getRadius: 10,
+              radiusMinPixels: 5,
+              radiusMaxPixels: 20,
+              pickable: true,
             })
         ]
     });
