@@ -1,0 +1,6 @@
+{
+  "name": "Cyberpunk 3D Map",
+  "description": "An interactive, cyberpunk-styled 3D map interface featuring neon data clusters and glowing dynamic arcs over New York City.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
