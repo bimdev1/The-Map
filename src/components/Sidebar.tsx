@@ -107,10 +107,10 @@ export default function Sidebar({
         </div>
         <h1 className="text-sm font-bold text-cyber-cyan tracking-[0.2em] flex items-center gap-2 glow-text">
           <Cpu className="w-4 h-4 text-cyber-cyan animate-pulse" />
-          NET-GRID CONSOLE
+          GEOSPATIAL RESEARCH CONSOLE
         </h1>
         <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">
-          CYBERPUNK SPATIAL INTELLIGENCE v4.02
+          SOCIAL MOVEMENT MAPPING TOOLKIT v4.02
         </p>
       </div>
 
@@ -144,7 +144,7 @@ export default function Sidebar({
               : 'text-slate-500 border-transparent hover:text-slate-300 hover:bg-slate-900/40'
           }`}
         >
-          CONSOLE
+          SYSTEM LOGS
         </button>
         <button
           onClick={() => setActiveTab('nodes')}
@@ -412,12 +412,12 @@ export default function Sidebar({
                   <label className="flex items-center justify-between cursor-pointer group">
                     <span className="flex items-center gap-2 text-slate-300 group-hover:text-white transition-colors">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block shadow-[0_0_6px_rgba(239,68,68,0.5)]" />
-                      COMPROMISED
+                      DISRUPTED
                     </span>
                     <input
                       type="checkbox"
-                      checked={filters.activeStatus.compromised}
-                      onChange={() => toggleStatusFilter('compromised')}
+                      checked={filters.activeStatus.disrupted}
+                      onChange={() => toggleStatusFilter('disrupted')}
                       className="w-4 h-4 rounded bg-black border-slate-700 checked:bg-cyber-pink checked:border-cyber-pink text-cyber-pink cursor-pointer"
                     />
                   </label>
@@ -425,12 +425,12 @@ export default function Sidebar({
                   <label className="flex items-center justify-between cursor-pointer group">
                     <span className="flex items-center gap-2 text-slate-300 group-hover:text-white transition-colors">
                       <span className="w-2.5 h-2.5 rounded-full bg-slate-600 inline-block" />
-                      OFFLINE
+                      DORMANT
                     </span>
                     <input
                       type="checkbox"
-                      checked={filters.activeStatus.offline}
-                      onChange={() => toggleStatusFilter('offline')}
+                      checked={filters.activeStatus.dormant}
+                      onChange={() => toggleStatusFilter('dormant')}
                       className="w-4 h-4 rounded bg-black border-slate-700 checked:bg-cyber-pink checked:border-cyber-pink text-cyber-pink cursor-pointer"
                     />
                   </label>
@@ -441,54 +441,54 @@ export default function Sidebar({
               <div className="space-y-3 border border-cyber-pink/20 p-3 bg-black/30 rounded">
                 <div className="flex items-center gap-1.5 text-cyber-pink font-bold uppercase tracking-wider border-b border-cyber-pink/20 pb-1.5 mb-2">
                   <Layers className="w-3.5 h-3.5 text-cyber-pink" />
-                  FILTER BY INFRASTRUCTURE
+                  FILTER BY SITE TYPOLOGY
                 </div>
 
                 <div className="space-y-2">
                   <label className="flex items-center justify-between cursor-pointer group">
                     <span className="flex items-center gap-1.5 text-slate-300 group-hover:text-white transition-colors">
-                      <span className="text-cyber-red font-bold">⊛</span> NEURAL CORE
+                      <span className="text-cyber-red font-bold">⊛</span> MOVEMENT HUB
                     </span>
                     <input
                       type="checkbox"
-                      checked={filters.nodeType.core}
-                      onChange={() => toggleTypeFilter('core')}
+                      checked={filters.nodeType.hub}
+                      onChange={() => toggleTypeFilter('hub')}
                       className="w-4 h-4 rounded bg-black border-slate-700 checked:bg-cyber-pink checked:border-cyber-pink text-cyber-pink cursor-pointer"
                     />
                   </label>
 
                   <label className="flex items-center justify-between cursor-pointer group">
                     <span className="flex items-center gap-1.5 text-slate-300 group-hover:text-white transition-colors">
-                      <span className="text-cyber-orange font-bold">▲</span> SIGNAL RELAY
+                      <span className="text-cyber-orange font-bold">▲</span> COORDINATION NETWORK
                     </span>
                     <input
                       type="checkbox"
-                      checked={filters.nodeType.relay}
-                      onChange={() => toggleTypeFilter('relay')}
+                      checked={filters.nodeType.network}
+                      onChange={() => toggleTypeFilter('network')}
                       className="w-4 h-4 rounded bg-black border-slate-700 checked:bg-cyber-pink checked:border-cyber-pink text-cyber-pink cursor-pointer"
                     />
                   </label>
 
                   <label className="flex items-center justify-between cursor-pointer group">
                     <span className="flex items-center gap-1.5 text-slate-300 group-hover:text-white transition-colors">
-                      <span className="text-cyber-cyan font-bold">■</span> STANDARD TERMINAL
+                      <span className="text-cyber-cyan font-bold">■</span> FIELD SITE
                     </span>
                     <input
                       type="checkbox"
-                      checked={filters.nodeType.terminal}
-                      onChange={() => toggleTypeFilter('terminal')}
+                      checked={filters.nodeType.site}
+                      onChange={() => toggleTypeFilter('site')}
                       className="w-4 h-4 rounded bg-black border-slate-700 checked:bg-cyber-pink checked:border-cyber-pink text-cyber-pink cursor-pointer"
                     />
                   </label>
 
                   <label className="flex items-center justify-between cursor-pointer group">
                     <span className="flex items-center gap-1.5 text-slate-300 group-hover:text-white transition-colors">
-                      <span className="text-cyber-yellow font-bold">◆</span> ICE GATEWAY
+                      <span className="text-cyber-yellow font-bold">◆</span> DATA ARCHIVE
                     </span>
                     <input
                       type="checkbox"
-                      checked={filters.nodeType.ice}
-                      onChange={() => toggleTypeFilter('ice')}
+                      checked={filters.nodeType.archive}
+                      onChange={() => toggleTypeFilter('archive')}
                       className="w-4 h-4 rounded bg-black border-slate-700 checked:bg-cyber-pink checked:border-cyber-pink text-cyber-pink cursor-pointer"
                     />
                   </label>

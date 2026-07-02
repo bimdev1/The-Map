@@ -18,14 +18,14 @@ export default function App() {
     activeStatus: {
       active: true,
       restricted: true,
-      compromised: true,
-      offline: false, // offline hidden by default for a cleaner grid
+      disrupted: true,
+      dormant: false,
     },
     nodeType: {
-      core: true,
-      relay: true,
-      terminal: true,
-      ice: true,
+      hub: true,
+      network: true,
+      site: true,
+      archive: true,
     },
     searchQuery: '',
     pointCount: 5000,
@@ -83,20 +83,19 @@ export default function App() {
   // Simulated System Boot Sequence
   useEffect(() => {
     const logs = [
-      'SECURE HANDSHAKE: INITIATING PROTOCOL v4.0.2...',
-      'CONNECTING TO NYC METROPOLITAN INFRASTRUCTURE...',
-      'ACQUIRING NEURAL BACKBONE SATELLITE CHANNELS...',
-      'ICE GATEWAY DETECTION: SECURE.',
-      'DOWNLOADING NODE GEOMETRIES AND ENCRYPTION KEYS...',
-      'EXTRUDING 3D VECTOR VECTOR TILES...',
-      'DECRYPTING SUB-GRID TRAFFIC TELEMETRY...',
-      'SYSTEM READY. DEPLOYING NETRUNNER HUD MODULES.'
+        '[vite] connecting to HMR server...',
+        '[react] mounting virtual DOM components...',
+        '[maplibre] initializing WebGL2 context...',
+        '[maplibre] fetching CartoDB Dark Matter vector tiles...',
+        '[deck.gl] compiling ArcLayer shaders...',
+        '[data] parsing 5000+ GeoJSON node features...',
+        '[app] spatial intelligence toolkit ready.'
     ];
 
     let logIndex = 0;
     const logInterval = setInterval(() => {
       if (logIndex < logs.length) {
-        setBootLogs(prev => [...prev, `[SYS] ${logs[logIndex]}`]);
+        setBootLogs(prev => [...prev, logs[logIndex]]);
         logIndex++;
       }
     }, 400);

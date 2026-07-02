@@ -3,8 +3,8 @@ export interface MapNode {
   coordinates: [number, number]; // [longitude, latitude]
   name: string;
   value: number; // e.g. 10 - 100
-  type: 'core' | 'relay' | 'terminal' | 'ice';
-  status: 'active' | 'compromised' | 'offline' | 'restricted';
+  type: 'hub' | 'network' | 'site' | 'archive';
+  status: 'active' | 'disrupted' | 'restricted' | 'dormant';
   traffic: number; // MB/s
   latency: number; // ms
   pulseOffset: number; // animation offset
@@ -29,14 +29,14 @@ export interface MapFilters {
   activeStatus: {
     active: boolean;
     restricted: boolean;
-    compromised: boolean;
-    offline: boolean;
+    disrupted: boolean;
+    dormant: boolean;
   };
   nodeType: {
-    core: boolean;
-    relay: boolean;
-    terminal: boolean;
-    ice: boolean;
+    hub: boolean;
+    network: boolean;
+    site: boolean;
+    archive: boolean;
   };
   searchQuery: string;
   pointCount: number; // e.g. 5000

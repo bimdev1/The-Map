@@ -40,7 +40,7 @@ export default function HudOverlay() {
           <div className="flex items-center gap-2">
             <Radio className="w-3.5 h-3.5 text-cyber-cyan animate-pulse" />
             <span className="font-bold text-cyber-cyan tracking-[0.15em] uppercase text-[11px] glow-text">
-              NYC NET-SECTOR-07_SYS_MAP
+              NYC METROPOLITAN RESEARCH GRID
             </span>
           </div>
           <div className="text-[9px] text-slate-500 uppercase flex gap-2 items-center">

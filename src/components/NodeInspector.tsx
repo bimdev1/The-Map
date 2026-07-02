@@ -99,17 +99,17 @@ export default function NodeInspector({ node, onClose }: NodeInspectorProps) {
 
   // Status Badge configs
   const statusConfig = {
-    active: { color: 'text-emerald-400 bg-emerald-950/40 border-emerald-500/40', text: 'STABLE / SECURE' },
-    restricted: { color: 'text-amber-400 bg-amber-950/40 border-amber-500/40', text: 'RESTRICTED / FIREWALL' },
-    compromised: { color: 'text-rose-500 bg-rose-950/40 border-rose-500/40', text: 'SECURITY BREACHED' },
-    offline: { color: 'text-slate-500 bg-slate-900/40 border-slate-700/40', text: 'OFFLINE / DARK' },
+    active: { color: 'text-emerald-400 bg-emerald-950/40 border-emerald-500/40', text: 'ACTIVE / STABLE' },
+    restricted: { color: 'text-amber-400 bg-amber-950/40 border-amber-500/40', text: 'RESTRICTED' },
+    disrupted: { color: 'text-rose-500 bg-rose-950/40 border-rose-500/40', text: 'DISRUPTED / POLICE' },
+    dormant: { color: 'text-slate-500 bg-slate-900/40 border-slate-700/40', text: 'DORMANT / HISTORICAL' },
   };
 
   const typeLabels = {
-    core: 'NEURAL BACKBONE CORE',
-    relay: 'TERRESTRIAL SIGNAL RELAY',
-    terminal: 'SUBNET WORKSTATION TERMINAL',
-    ice: 'INTRUSION COUNTERMEASURE ELECTRONICS (ICE)',
+    hub: 'MOVEMENT HUB',
+    network: 'COORDINATION NETWORK',
+    site: 'FIELD SITE',
+    archive: 'DATA ARCHIVE',
   };
 
   return (
@@ -127,7 +127,7 @@ export default function NodeInspector({ node, onClose }: NodeInspectorProps) {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyber-pink animate-pulse shadow-[0_0_8px_#ff0055]" />
             <h2 className="font-bold tracking-wider text-cyber-pink text-xs uppercase glow-text-pink">
-              NODE DIAGNOSTICS: {node.name}
+              SITE METADATA: {node.name}
             </h2>
           </div>
           <button 
@@ -186,7 +186,7 @@ export default function NodeInspector({ node, onClose }: NodeInspectorProps) {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-1 text-[10px] text-cyber-pink font-bold uppercase">
                 <Activity className="w-3.5 h-3.5" />
-                TRAFFIC FLUX (MB/S)
+                DATA THROUGHPUT (MB/S)
               </div>
               <span className="text-[10px] text-white font-bold">{trafficHistory[trafficHistory.length - 1]} MB/S</span>
             </div>
